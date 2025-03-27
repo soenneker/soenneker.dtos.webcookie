@@ -1,4 +1,3 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System;
 using Newtonsoft.Json;
@@ -8,7 +7,6 @@ namespace Soenneker.Dtos.WebCookie;
 /// <summary>
 /// A .NET type representing an HTTP cookie
 /// </summary>
-[DataContract]
 public class WebCookie
 {
     /// <summary>
@@ -16,7 +14,6 @@ public class WebCookie
     /// </summary>
     [JsonProperty("name")]
     [JsonPropertyName("name")]
-    [DataMember(Name = "name")]
     public string? Name { get; set; }
 
     /// <summary>
@@ -24,7 +21,6 @@ public class WebCookie
     /// </summary>
     [JsonProperty("value")]
     [JsonPropertyName("value")]
-    [DataMember(Name = "value")]
     public string? Value { get; set; }
 
     /// <summary>
@@ -32,7 +28,6 @@ public class WebCookie
     /// </summary>
     [JsonProperty("domain")]
     [JsonPropertyName("domain")]
-    [DataMember(Name = "domain")]
     public string? Domain { get; set; }
 
     /// <summary>
@@ -40,7 +35,6 @@ public class WebCookie
     /// </summary>
     [JsonProperty("path")]
     [JsonPropertyName("path")]
-    [DataMember(Name = "path")]
     public string? Path { get; set; }
 
     /// <summary>
@@ -48,7 +42,6 @@ public class WebCookie
     /// </summary>
     [JsonProperty("secure")]
     [JsonPropertyName("secure")]
-    [DataMember(Name = "secure")]
     public bool? Secure { get; set; }
 
     /// <summary>
@@ -56,7 +49,6 @@ public class WebCookie
     /// </summary>
     [JsonProperty("httpOnly")]
     [JsonPropertyName("httpOnly")]
-    [DataMember(Name = "httpOnly")]
     public bool? IsHttpOnly { get; set; }
 
     /// <summary>
@@ -64,7 +56,6 @@ public class WebCookie
     /// </summary>
     [JsonProperty("expiry")]
     [JsonPropertyName("expiry")]
-    [DataMember(Name = "expiry")]
     public DateTime? Expiry { get; set; }
 
     /// <summary>
@@ -72,7 +63,6 @@ public class WebCookie
     /// </summary>
     [JsonProperty("sameSite")]
     [JsonPropertyName("sameSite")]
-    [DataMember(Name = "sameSite")]
     public string? SameSite { get; set; }
 
     /// <summary>
@@ -80,7 +70,6 @@ public class WebCookie
     /// </summary>
     [JsonProperty("creationTime")]
     [JsonPropertyName("creationTime")]
-    [DataMember(Name = "creationTime")]
     public DateTime? CreationTime { get; set; }
 
     /// <summary>
@@ -88,7 +77,6 @@ public class WebCookie
     /// </summary>
     [JsonProperty("lastAccessTime")]
     [JsonPropertyName("lastAccessTime")]
-    [DataMember(Name = "lastAccessTime")]
     public DateTime? LastAccessTime { get; set; }
 
     /// <summary>
@@ -96,7 +84,6 @@ public class WebCookie
     /// </summary>
     [JsonProperty("isPersistent")]
     [JsonPropertyName("isPersistent")]
-    [DataMember(Name = "isPersistent")]
     public bool? IsPersistent { get; set; }
 
     /// <summary>
@@ -104,6 +91,5 @@ public class WebCookie
     /// </summary>
     [JsonProperty("source")]
     [JsonPropertyName("source")]
-    [DataMember(Name = "source")]
     public string? Source { get; set; }
 }
