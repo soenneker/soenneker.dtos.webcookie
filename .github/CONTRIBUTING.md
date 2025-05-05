@@ -1,4 +1,4 @@
-# Contributing to Soenneker.Dtos.WebCookie
+﻿# Contributing to Soenneker.Dtos.WebCookie
 
 We're excited that you're interested in contributing!
 
