@@ -7,7 +7,7 @@ namespace Soenneker.Dtos.WebCookie;
 /// <summary>
 /// A .NET type representing an HTTP cookie
 /// </summary>
-public class WebCookie
+public sealed class WebCookie
 {
     /// <summary>
     /// Gets or sets the name of the cookie.
