@@ -1,16 +1,15 @@
-using Soenneker.Tests.FixturedUnit;
-using Xunit;
+using Soenneker.Tests.HostedUnit;
 
 namespace Soenneker.Dtos.WebCookie.Tests;
 
-[Collection("Collection")]
-public class WebCookieTests : FixturedUnitTest
+[ClassDataSource<Host>(Shared = SharedType.PerTestSession)]
+public class WebCookieTests : HostedUnitTest
 {
-    public WebCookieTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public WebCookieTests(Host host) : base(host)
     {
     }
 
-    [Fact]
+    [Test]
     public void Default()
     {
 
