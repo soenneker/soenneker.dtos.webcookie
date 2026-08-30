@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace Soenneker.Dtos.WebCookie;
 
 /// <summary>
-/// A .NET type representing an HTTP cookie
+/// Represents a serializable snapshot of HTTP cookie data and browser metadata.
 /// </summary>
 public sealed class WebCookie
 {
@@ -45,7 +45,7 @@ public sealed class WebCookie
     public bool? Secure { get; set; }
 
     /// <summary>
-    /// Gets or sets a value indicating whether the cookie is accessible only through HTTP requests.
+    /// Gets or sets whether client-side scripts should be prevented from accessing the cookie.
     /// </summary>
     [JsonProperty("httpOnly")]
     [JsonPropertyName("httpOnly")]

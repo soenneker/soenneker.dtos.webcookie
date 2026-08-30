@@ -5,7 +5,7 @@
 
 # Soenneker.Dtos.WebCookie
 
-A .NET type representing an HTTP cookie.
+A serializable snapshot of HTTP cookie data and browser metadata. It supports both `System.Text.Json` and Newtonsoft.Json, but it does not itself parse, store, or enforce cookies.
 
 ## Install
 
@@ -13,23 +13,28 @@ A .NET type representing an HTTP cookie.
 dotnet add package Soenneker.Dtos.WebCookie
 ```
 
-## What you get
+## Usage
 
-- `WebCookie` — A .NET type representing an HTTP cookie.
+```csharp
+using Soenneker.Dtos.WebCookie;
 
-## API at a glance
+var cookie = new WebCookie
+{
+    Name = "preferences",
+    Value = "compact",
+    Domain = "example.com",
+    Path = "/",
+    Secure = true,
+    IsHttpOnly = true,
+    SameSite = "Lax",
+    Expiry = DateTime.UtcNow.AddDays(30),
+    IsPersistent = true,
+    Source = "browser"
+};
+```
 
-| API | What it does | Result / important behavior |
-| --- | --- | --- |
-| `WebCookie.Name` | Gets or sets the name of the cookie. | Gets or sets the name of the cookie. |
-| `WebCookie.Value` | Gets or sets the value of the cookie. | Gets or sets the value of the cookie. |
-| `WebCookie.Domain` | Gets or sets the domain for which the cookie is valid. | Gets or sets the domain for which the cookie is valid. |
-| `WebCookie.Path` | Gets or sets the path for which the cookie is valid. | Gets or sets the path for which the cookie is valid. |
-| `WebCookie.Secure` | Gets or sets a value indicating whether the cookie is secure (transmitted over HTTPS only). | Gets or sets a value indicating whether the cookie is secure (transmitted over HTTPS only). |
-| `WebCookie.IsHttpOnly` | Gets or sets a value indicating whether the cookie is accessible only through HTTP requests. | Gets or sets a value indicating whether the cookie is accessible only through HTTP requests. |
-| `WebCookie.Expiry` | Gets or sets the expiration time of the cookie. | Gets or sets the expiration time of the cookie. |
-| `WebCookie.SameSite` | Gets or sets the SameSite attribute of the cookie, specifying its SameSite policy. | Gets or sets the SameSite attribute of the cookie, specifying its SameSite policy. |
-| `WebCookie.CreationTime` | Gets or sets the creation time of the cookie. | Gets or sets the creation time of the cookie. |
-| `WebCookie.LastAccessTime` | Gets or sets the last access time of the cookie. | Gets or sets the last access time of the cookie. |
-| `WebCookie.IsPersistent` | Gets or sets a value indicating whether the cookie is persistent. | Gets or sets a value indicating whether the cookie is persistent. |
-| `WebCookie.Source` | Gets or sets the source of the cookie (e.g., browser or extension). | Gets or sets the source of the cookie (e.g., browser or extension). |
+All members are optional so partial snapshots can be deserialized. `SameSite` and `Source` are unconstrained strings. `Expiry`, `CreationTime`, and `LastAccessTime` use `DateTime`; preserve or normalize the intended time zone before comparing values from different systems.
+
+`Secure`, `IsHttpOnly`, `SameSite`, `Domain`, and `Path` are data on this DTO only. Setting them does not configure an ASP.NET response, a browser, `CookieContainer`, or any other cookie store. Validate names, domains, paths, expiry, and policy values before translating untrusted data into a live cookie.
+
+Cookie values can contain session credentials. Avoid logging or persisting this DTO in plaintext, and do not accept a client-supplied cookie snapshot as proof of authentication.
