@@ -5,7 +5,7 @@
 
 # Soenneker.Dtos.WebCookie
 
-A serializable snapshot of HTTP cookie data and browser metadata. It supports both `System.Text.Json` and Newtonsoft.Json, but it does not itself parse, store, or enforce cookies.
+A serializable snapshot of HTTP cookie data and browser metadata. It supports `System.Text.Json`, but it does not itself parse, store, or enforce cookies.
 
 ## Install
 
